@@ -1,34 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Day Interactive Page</title>
-    <style>
-        body {
-            background-color: pink;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        h1 {
-            color: red;
-        }
-        .heart {
-            color: red;
-            font-size: 50px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nuestra Historia 💖</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+font-family:Arial;ackground:black;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:2s;
+}
+
+/* INTRO */
+.intro{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+font-size:28px;
+cursor:pointer;
+z-index:5;
+}
+
+/* ESCENA */
+.scene{
+display:none;
+height:100vh;
+width:100%;
+align-items:center;
+justify-content:center;ackground:radial-gradient(circle at bottom,#ff9ecb,#ff4d88 60%,#1a0010);
+transition:2s;
+}
+
+/* PLAYA FINAL */
+.playa{
+background:url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover no-repeat !important;
+}
+
+/* TARJETA */
+.card{
+background:rgba(0,0,0,0.4);
+padding:40px;
+border-radius:20px;
+text-align:center;
+}
+
+button{
+padding:14px 22px;
+margin:10px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-size:16px;
+}
+
+the yes{background:#ff4d88;color:white;}
+.no{background:#ffffff22;color:white;}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:22px;
+animation:rise linear forwards;
+}
+
+@keyframes rise{
+to{
+transform:translateY(-110vh) scale(1.4);
+opacity:0;
+}
+}
+
+.letter{
+display:none;
+font-size:20px;
+margin-top:20px;
+}
+
+</style>
 </head>
 <body>
-    <h1>Happy Valentine's Day!</h1>
-    <p>Send love and joy to everyone!</p>
-    <div class="heart">❤️</div>
-    <script>
-        // Simple interactive feature to change heart color on click
-        const heart = document.querySelector('.heart');
-        heart.addEventListener('click', () => {
-            heart.style.color = '#' + Math.floor(Math.random()*16777215).toString(16);
-        });
-    </script>
+
+<div class="intro" id="intro">
+🎬 Nuestra historia está por comenzar…<br><br>
+✨ TOCA LA PANTALLA ✨
+</div>
+
+<!-- SOUND CLOUD INVISIBLE -->
+<iframe id="music"
+width="0" height="0"
+allow="autoplay"
+src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/fonseca-official/cartagena&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false">
+</iframe>
+
+<div class="scene" id="scene">
+
+<div class="card">
+
+<h1>Stephania… 💖</h1>
+
+<p>Solo hay una pregunta…</p>
+
+<h2>¿Quieres ser mi San Valentín?</h2>
+
+<div id="buttons">
+<button class="yes" onclick="sayYes()">Sí 💕</button>
+<button class="no" onmouseover="moveNo(this)">No 🙈</button>
+</div>
+
+<div class="letter" id="letter">
+Entonces prepárate…<br>
+porque esta historia apenas comienza 💞<br><br>
+Ve preparando la maleta…<br>
+nos vamos a la playita 🏖️🌊
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("intro").addEventListener("click",startMovie);
+
+function startMovie(){
+
+document.getElementById("intro").style.display="none";
+document.getElementById("scene").style.display="flex";
+
+/* activar música */
+let iframe=document.getElementById("music");
+iframe.src=iframe.src.replace("auto_play=false","auto_play=true");
+
+startHearts();
+}
+
+function moveNo(btn){
+let x=Math.random()*220-110;
+let y=Math.random()*160-80;
+btn.style.transform=`translate(${x}px,${y}px)`;
+}
+
+function sayYes(){
+
+document.getElementById("buttons").style.display="none";
+document.getElementById("letter").style.display="block";
+
+/* transición a playa */
+document.getElementById("scene").classList.add("playa");
+}
+
+/* corazones */
+function startHearts(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*4+4)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),8000);
+},250);
+}
+
+</script>
+
 </body>
 </html>
