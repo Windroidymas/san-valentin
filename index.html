@@ -149,4 +149,30 @@ startHearts();
 function moveNo(btn){
 let x=Math.random()*220-110;
 let y=Math.random()*160-80;
-bt ..........
+btn.style.transform=`translate(${x}px,${y}px)`;
+}
+
+function sayYes(){
+
+document.getElementById("buttons").style.display="none";
+document.getElementById("letter").style.display="block";
+document.getElementById("scene").classList.add("playa");
+
+}
+
+function startHearts(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*4+4)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),8000);
+},250);
+}
+
+</script>
+
+</body>
+</html>
