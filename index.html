@@ -12,7 +12,8 @@ body{
 margin:0;
 height:100vh;
 overflow:hidden;
-font-family:Arial;ackground:black;
+font-family:Arial;
+background:black;
 color:white;
 display:flex;
 align-items:center;
@@ -23,8 +24,7 @@ transition:2s;
 /* INTRO */
 .intro{
 position:fixed;
-inset:0;
-background:black;
+inset:0;ackground:black;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -40,7 +40,8 @@ display:none;
 height:100vh;
 width:100%;
 align-items:center;
-justify-content:center;ackground:radial-gradient(circle at bottom,#ff9ecb,#ff4d88 60%,#1a0010);
+justify-content:center;
+background:radial-gradient(circle at bottom,#ff9ecb,#ff4d88 60%,#1a0010);
 transition:2s;
 }
 
@@ -66,7 +67,7 @@ cursor:pointer;
 font-size:16px;
 }
 
-the yes{background:#ff4d88;color:white;}
+.yes{background:#ff4d88;color:white;}
 .no{background:#ffffff22;color:white;}
 
 .heart{
@@ -91,6 +92,7 @@ margin-top:20px;
 
 </style>
 </head>
+
 <body>
 
 <div class="intro" id="intro">
@@ -98,11 +100,12 @@ margin-top:20px;
 ✨ TOCA LA PANTALLA ✨
 </div>
 
-<!-- SOUND CLOUD INVISIBLE -->
+<!-- SOUND CLOUD INVISIBLE (empieza en 0:47) -->
 <iframe id="music"
-width="0" height="0"
+width="0"
+height="0"
 allow="autoplay"
-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/fonseca-official/cartagena&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false">
+src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/fonseca-official/cartagena&auto_play=false&start_time=47000&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=false">
 </iframe>
 
 <div class="scene" id="scene">
@@ -140,11 +143,12 @@ function startMovie(){
 document.getElementById("intro").style.display="none";
 document.getElementById("scene").style.display="flex";
 
-/* activar música */
+/* activar música desde 0:47 */
 let iframe=document.getElementById("music");
 iframe.src=iframe.src.replace("auto_play=false","auto_play=true");
 
 startHearts();
+
 }
 
 function moveNo(btn){
@@ -158,8 +162,9 @@ function sayYes(){
 document.getElementById("buttons").style.display="none";
 document.getElementById("letter").style.display="block";
 
-/* transición a playa */
+/* transición playa */
 document.getElementById("scene").classList.add("playa");
+
 }
 
 /* corazones */
